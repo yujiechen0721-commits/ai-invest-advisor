@@ -1,12 +1,9 @@
-# app.py （投稿用：模擬 LINE 簡訊，無需 config.py）
+# app.py （投稿用：無 LINE、無按鈕、簡潔版）
 import streamlit as st
 import yfinance as yf
 import pandas as pd
 import plotly.graph_objects as go
 from datetime import datetime
-import schedule
-import time
-import threading
 
 # === AI 資產配置建議 ===
 def get_ai_allocation(age, monthly_save, risk):
@@ -24,11 +21,10 @@ def get_ai_allocation(age, monthly_save, risk):
         st.write(f"- **{name}** (`{t}`): {w*100:.0f}%")
     return base
 
-# === 模擬 20 年複利（完全修復）===
+# === 模擬 20 年複利 ===
 def simulate_portfolio(allocation, monthly_save, years=20):
     end_date = datetime.now()
     start_date = f"{end_date.year - years}-01-01"
-
     total_monthly_return = 0.0
     valid_count = 0
 
@@ -57,22 +53,6 @@ def simulate_portfolio(allocation, monthly_save, years=20):
             values.append(future_value)
 
     return values
-
-# === 模擬 LINE 推播（畫面顯示）===
-def simulate_line_message():
-    msg = (f"【AI投資小秘書】每日簡訊\n"
-           f"{datetime.now().strftime('%Y-%m-%d')}\n"
-           "點擊查看最新模擬：\n"
-           "http://localhost:8501")
-    st.success("已啟動每日 18:00 簡訊！")
-    st.info(f"**模擬簡訊內容（實際會推播到 LINE）**:\n\n{msg}")
-
-# === 定時任務（模擬用，僅顯示）===
-def run_scheduler():
-    schedule.every().day.at("18:00").do(simulate_line_message)
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
 
 # === 介面 ===
 st.title("AI 投資小秘書")
@@ -114,17 +94,12 @@ if st.button("生成投資建議"):
     st.plotly_chart(fig, use_container_width=True)
     st.success(f"20 年後預估資產：**{values[-1]:,.0f} 元**")
 
-# === 模擬啟用簡訊（點了就顯示）===
-if st.button("啟用每日盤後簡訊"):
-    # 立即顯示測試訊息
-    test_msg = (f"AI投資小秘書 測試成功！\n"
-                f"時間：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-                "每日 18:00 將自動提醒你～")
-    st.success("已啟動每日 18:00 簡訊！")
-    st.info(f"**模擬測試訊息（實際會推播到 LINE）**:\n\n{test_msg}")
-
-    # 啟動背景定時（僅模擬，點了就顯示）
-    threading.Thread(target=run_scheduler, daemon=True).start()
+    # === 模擬簡訊（自動顯示，不用按）===
+    st.info("**模擬 LINE 簡訊功能**：\n"
+            "每日 18:00 將自動推播：\n"
+            "『AI投資小秘書 今日提醒！\n"
+            f"時間：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+            "點擊查看最新模擬～』")
 
 # === 免責 ===
 st.markdown("---")
