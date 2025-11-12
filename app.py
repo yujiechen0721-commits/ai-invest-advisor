@@ -108,7 +108,7 @@ if st.button("生成投資建議"):
         <strong style="font-size: 16px;">LINE 每日盤後簡訊（模擬功能）</strong><br><br>
         • <strong>時間</strong>：每日 18:00 自動推播<br>
         • <strong>內容</strong>：今日投資組合表現 + 最新模擬<br>
-        • <strong>技術</strong>：使用 LINE Messaging API 實現（每月 500 則免費）
+        • <strong>技術</strong>：使用 LINE Messaging API 實現
         </div>
         """,
         unsafe_allow_html=True
@@ -117,6 +117,7 @@ if st.button("生成投資建議"):
 # === 免責聲明 ===
 st.markdown("---")
 st.caption("免責聲明：本工具僅供教育與模擬用途，非證券投資顧問建議。歷史報酬不代表未來表現。")
+
 
 
 
