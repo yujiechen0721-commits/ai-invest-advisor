@@ -101,11 +101,11 @@ if st.button("生成投資建議"):
     st.plotly_chart(fig, use_container_width=True)
     st.success(f"**20 年後預估資產：{values[-1]:,.0f} 元**")
 
-    # === 條列式簡訊說明（強制換行）===
+    # === 條列式簡訊說明(深色背景 + 白色字)===
     st.markdown(
         """
-        <div style="background-color: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 5px solid #2196f3;">
-        <strong>LINE 每日盤後簡訊(模擬功能)</strong><br><br>
+        <div style="background-color: #1a1a2e; color: white; padding: 15px; border-radius: 10px; border-left: 5px solid #00C853; font-family: 'Segoe UI', sans-serif;">
+        <strong style="font-size: 16px;">LINE 每日盤後簡訊（模擬功能）</strong><br><br>
         • <strong>時間</strong>：每日 18:00 自動推播<br>
         • <strong>內容</strong>：今日投資組合表現 + 最新模擬<br>
         • <strong>技術</strong>：使用 LINE Messaging API 實現（每月 500 則免費）
@@ -117,5 +117,6 @@ if st.button("生成投資建議"):
 # === 免責聲明 ===
 st.markdown("---")
 st.caption("免責聲明：本工具僅供教育與模擬用途，非證券投資顧問建議。歷史報酬不代表未來表現。")
+
 
 
