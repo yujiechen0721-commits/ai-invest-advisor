@@ -103,7 +103,7 @@ if st.button("生成投資建議"):
         pass
 
     fig.update_layout(
-        title="20 年複利模擬（對比台股加權指數）",
+        title="20 年複利模擬",
         xaxis_title="年",
         yaxis_title="總資產 (元)",
         legend=dict(x=0.02, y=0.98),
@@ -128,6 +128,7 @@ if st.button("生成投資建議"):
 # === 免責聲明 ===
 st.markdown("---")
 st.caption("免責聲明：本工具僅供教育與模擬用途，非證券投資顧問建議。歷史報酬不代表未來表現。")
+
 
 
 
