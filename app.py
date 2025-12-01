@@ -1,5 +1,16 @@
 # app.py （投稿最佳版：無按鈕、靜態簡訊、極簡專業）
 import streamlit as st
+
+# 隱藏右上角 GitHub + Fork 按鈕
+hide_menu_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    .stDeployButton {display:none;}
+    </style>
+    """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
+
 import yfinance as yf
 import pandas as pd
 import plotly.graph_objects as go
@@ -117,6 +128,7 @@ if st.button("生成投資建議"):
 # === 免責聲明 ===
 st.markdown("---")
 st.caption("免責聲明：本工具僅供教育與模擬用途，非證券投資顧問建議。歷史報酬不代表未來表現。")
+
 
 
 
